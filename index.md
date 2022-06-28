@@ -1,6 +1,23 @@
 ## Tick Counter
 [Tick Counter](https://cmsu224.github.io)
 
+<html>
+<head>
+<title>BIS tools</title>
+<style>
+	html{
+		text-align: center;
+	}
+</style>
+</head>
+<body>
+	<h1>Backseat's BIS tools</h1>
+	<h2><a href="inferno.html">Inferno LOS</a></h2>
+	<h2><a href="fightcaves.html">Fight Cave Rotations</a></h2>
+	<h2><a href="timers.html">Zuk timers</a></h2>
+</body>
+</html>
+
 ## Welcome to GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/cmsu224/cmsu224.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
