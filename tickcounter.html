@@ -1,102 +1,96 @@
 <html>
-  <head>
-    <title>Tick Counter</title>
-    <style>
-      #map{
-        border:1px solid black;
-        display:inline-block;
-      }
-      #tape{
-        display: inline-block;
-        vertical-align: top;
-      }
-      button{
-        margin-bottom:3px;
-      }
-    </style>
-  </head>
-  <script>
+<head>
+<style>
+	button{
+		width:100px;
+		height:100px;
+		font-size:32px;
+	}
+	.warning{
+		color:red;
+	}
+	h1{
+		font-size:48px;
+	}
+</style>
+<script>
 
-    //let sound = new Audio('rooster.mp3');
-    let ele,butt;
-    document.addEventListener("DOMContentLoaded", function(){
-      ele = document.getElementById("timer");
-      ele.innerHTML = formatTimestamp(tbs);
-      butt = document.getElementById("butt");
-    });
+	//let sound = new Audio('rooster.mp3');
+	let ele,butt;
+	document.addEventListener("DOMContentLoaded", function(){
+		ele = document.getElementById("timer");
+		ele.innerHTML = formatTimestamp(tbs);
+		butt = document.getElementById("butt");
+	});
 
-    let tbs = 3.5*60*1000;
-    let jad_adds = 1.75*60*1000;
-    let warn_at = 10*1000;
+  document.addEventListener('keyup', (e) => {
+    if (e.code === "Digit2")        tickcount(2)
+    else if (e.code === "Digit3") tickcount(3)
+    else if (e.code === "Digit4") tickcount(4)
+    else if (e.code === "Digit5") tickcount(5)
+    else if (e.code === "Digit6") tickcount(6)
+    else if (e.code === "Digit7") tickcount(7)
+    else if (e.code === "Digit8") tickcount(8)
+    else if (e.code === "Digit9") tickcount(9)
+  });
 
-    let start = null;
-    let pause = null;
-    let resume = null;
-    let sint;
+	let tbs = 2400;
+	let jad_adds = 1.75*60*1000;
+	let warn_at = 600;
 
-    function progress(){
-      if(start==null){
-        start = Date.now();
-        butt.innerHTML = "Pause";
-        sint = setInterval(tick,50);
-      }else if(pause==null){
-        pause = Date.now();
-        butt.innerHTML = "Resume";
-      }else if(resume==null){
-        resume = Date.now();
-        butt.innerHTML = "Reset";
-      }else{
-        start = pause = resume = null;
-        butt.innerHTML = "Start";
-        ele.innerHTML = formatTimestamp(tbs);
-        clearInterval(sint);
-      }
-    }
+	let start = null;
+	let pause = null;
+	let resume = null;
+	let sint;
 
-    function formatTimestamp(timestamp){
-      let min = Math.floor(timestamp/60000);
-      let sec = Math.floor((timestamp%60000)/1000);
-      let mil = timestamp%1000;
-      min = min.toString().padStart(2,"0");
-      sec = sec.toString().padStart(2,"0");
-      mil = mil.toString().padStart(2,"0").substring(0,2);
-      return min+":"+sec+":"+mil;
-    }
+	function tickcount(ticks){
+		tbs = ticks * 600;
+		start = Date.now();
+		sint = setInterval(tick,50);
+	}
 
-    function tick(){
+	function formatTimestamp(timestamp){
+    return Math.ceil(timestamp/600);
+	}
 
-      let tts = 0;
+	function tick(){
 
-      if(pause){
-        let pre_elap = pause - start;
-        tts = tbs - (pre_elap % tbs) + jad_adds;
-      }else{
-        let pre_elap = Date.now() - start;
-        tts = tbs - (pre_elap % tbs);
-      }
+		let tts = 0;
 
-      if(resume){
-        let post_elap = Date.now() - resume;
-        if(post_elap>tts){
-          tts = tbs - ((post_elap-tts)%tbs)
-        }else{
-          tts = tts - post_elap;
-        }
-      }
+		if(pause){
+			let pre_elap = pause - start;
+			tts = tbs - (pre_elap % tbs) + jad_adds;
+		}else{
+			let pre_elap = Date.now() - start;
+			tts = tbs - (pre_elap % tbs);
+		}
 
-      if(tts<warn_at){
-        if(!ele.classList.contains("warning")){
-          ele.classList.add("warning")
-          // sound.play();
-        }
-      }else{
-        ele.classList.remove("warning");
-      }
+		if(resume){
+			let post_elap = Date.now() - resume;
+			if(post_elap>tts){
+				tts = tbs - ((post_elap-tts)%tbs)
+			}else{
+				tts = tts - post_elap;
+			}
+		}
+	
+		if(tts<warn_at){
+			if(!ele.classList.contains("warning")){
+				ele.classList.add("warning")
+				// sound.play();
+			}
+		}else{
+			ele.classList.remove("warning");
+		}
+		
 
-
-      ele.innerHTML = formatTimestamp(tts);
-    }
-  </script>
+		ele.innerHTML = formatTimestamp(tts);
+	}
+</script>
+<title>Zuk timers</title>
+</head>
+<body>
+  <h1 id="timer"></h1>
   <button id="tick2" onclick="tickcount(2)">2</button>
   <button id="tick3" onclick="tickcount(3)">3</button>
   <button id="tick4" onclick="tickcount(4)">4</button>
@@ -105,4 +99,5 @@
   <button id="tick7" onclick="tickcount(7)">7</button>
   <button id="tick8" onclick="tickcount(8)">8</button>
   <button id="tick9" onclick="tickcount(9)">9</button>
+</body>
 </html>
