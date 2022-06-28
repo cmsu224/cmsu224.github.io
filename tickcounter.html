@@ -24,14 +24,14 @@
 	});
 
   document.addEventListener('keyup', (e) => {
-    if (e.code === "Digit2")        tickcount(2)
-    else if (e.code === "Digit3") tickcount(3)
-    else if (e.code === "Digit4") tickcount(4)
-    else if (e.code === "Digit5") tickcount(5)
-    else if (e.code === "Digit6") tickcount(6)
-    else if (e.code === "Digit7") tickcount(7)
-    else if (e.code === "Digit8") tickcount(8)
-    else if (e.code === "Digit9") tickcount(9)
+    if (e.code === "Digit2" || e.code == "Numpad2")        tickcount(2)
+    else if (e.code == "Digit3" || e.code == "Numpad3") tickcount(3)
+    else if (e.code == "Digit4" || e.code == "Numpad4") tickcount(4)
+    else if (e.code == "Digit5" || e.code == "Numpad5") tickcount(5)
+    else if (e.code == "Digit6" || e.code == "Numpad6") tickcount(6)
+    else if (e.code == "Digit7" || e.code == "Numpad7") tickcount(7)
+    else if (e.code == "Digit8" || e.code == "Numpad8") tickcount(8)
+    else if (e.code == "Digit9" || e.code == "Numpad9") tickcount(9)
   });
 
 	let tbs = 2400;
