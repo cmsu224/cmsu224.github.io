@@ -1,5 +1,5 @@
 layout: page
-title: "Another Page Creation"
-permalink: /test/
+title: "PAGE TITLE"
+permalink: /page/
 
 Test creating another page on github
