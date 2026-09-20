@@ -1,3 +1,7 @@
 theme: jekyll-theme-slate
 title: Personal Project
 description: Test creation of first page
+
+# Jekyll skips dot-folders by default, which would hide the Digital Asset Links
+# file Android needs at https://cmsu224.github.io/.well-known/assetlinks.json.
+include: [".well-known"]
